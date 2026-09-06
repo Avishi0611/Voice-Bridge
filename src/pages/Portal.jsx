@@ -1,0 +1,19 @@
+import { ArrowRight, BarChart3, FilePlus2, ListChecks } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { getGrievances } from '../services/grievanceStore'
+
+function Portal() {
+  const [grievances, setGrievances] = useState([])
+
+  useEffect(() => {
+    getGrievances().then(setGrievances)
+  }, [])
+
+  const recent = grievances.slice(0, 4)
+  const statusStyle = { 'Under Review': 'bg-amber-50 text-amber-700', Resolved: 'bg-emerald-50 text-emerald-700', 'In Progress': 'bg-blue-50 text-blue-700' }
+
+  return <section><div className="flex flex-wrap items-end justify-between gap-5"><div><p className="text-sm font-bold uppercase tracking-wider text-blue-600">Citizen dashboard</p><h1 className="mt-3 text-4xl font-extrabold tracking-tight text-slate-900">Welcome to VoiceBridge</h1><p className="mt-3 text-slate-600">Your reports help communities get the attention they deserve.</p></div><div className="rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600"><span className="font-bold text-slate-900">{grievances.length}</span> reports submitted</div></div><div className="mt-8 grid gap-4 sm:grid-cols-3"><Link to="/complaints/new" className="group rounded-2xl bg-blue-600 p-5 text-white shadow-sm transition hover:bg-blue-700"><FilePlus2 className="h-6 w-6" /><h2 className="mt-8 font-bold">New Complaint</h2><p className="mt-1 text-sm text-blue-100">Report an issue in your area</p><ArrowRight className="mt-4 h-4 w-4 transition group-hover:translate-x-1" /></Link><Link to="/history" className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-blue-200 hover:shadow-md"><ListChecks className="h-6 w-6 text-blue-600" /><h2 className="mt-8 font-bold text-slate-900">My Complaints</h2><p className="mt-1 text-sm text-slate-500">Track submitted reports</p><ArrowRight className="mt-4 h-4 w-4 text-blue-600" /></Link><Link to="/insights" className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-blue-200 hover:shadow-md"><BarChart3 className="h-6 w-6 text-blue-600" /><h2 className="mt-8 font-bold text-slate-900">Community Insights</h2><p className="mt-1 text-sm text-slate-500">See area-level patterns</p><ArrowRight className="mt-4 h-4 w-4 text-blue-600" /></Link></div><div className="mt-10 rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 px-6 py-5"><div><h2 className="text-xl font-bold text-slate-900">Recent complaints</h2><p className="mt-1 text-sm text-slate-500">A quick view of your latest reports.</p></div><Link to="/history" className="text-sm font-bold text-blue-600 hover:text-blue-700">View all</Link></div>{recent.length === 0 ? <div className="px-6 py-12 text-center text-sm text-slate-500">Your submitted complaints will appear here.</div> : <div className="overflow-x-auto"><table className="w-full min-w-[620px] text-left text-sm"><thead className="bg-slate-50 text-xs uppercase tracking-wider text-slate-500"><tr><th className="px-6 py-3 font-bold">Reference</th><th className="px-6 py-3 font-bold">Category</th><th className="px-6 py-3 font-bold">Date</th><th className="px-6 py-3 font-bold">Status</th></tr></thead><tbody className="divide-y divide-slate-100">{recent.map((item) => <tr key={item.referenceId}><td className="px-6 py-4 font-bold text-slate-800">{item.referenceId}</td><td className="px-6 py-4 text-slate-600">{item.category}</td><td className="px-6 py-4 text-slate-600">{new Date(item.submittedAt).toLocaleDateString()}</td><td className="px-6 py-4"><span className={`rounded-full px-3 py-1 text-xs font-bold ${statusStyle[item.status] || statusStyle['Under Review']}`}>{item.status}</span></td></tr>)}</tbody></table></div>}</div></section>
+}
+
+export default Portal
