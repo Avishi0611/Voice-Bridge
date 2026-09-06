@@ -11,6 +11,9 @@ import NewComplaint from './pages/NewComplaint'
 import Portal from './pages/Portal'
 import Registration from './pages/Registration'
 import Signup from './pages/Signup'
+import Notifications from './pages/Notifications'
+import Profile from './pages/Profile'
+import SettingsPage from './pages/Settings'
 
 function App() {
   return (
@@ -23,7 +26,10 @@ function App() {
           <Route path="/register" element={<Registration />} />
         </Route>
         <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
-          <Route path="/portal" element={<Portal />} />
+          <Route path="/portal" element={<Dashboard />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<SettingsPage />} />
           <Route path="/complaints/new" element={<NewComplaint />} />
           <Route path="/insights" element={<Insights />} />
           <Route path="/dashboard" element={<Dashboard />} />

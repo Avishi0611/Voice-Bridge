@@ -1,1 +1,164 @@
-[]
+[
+  {
+    "id": "grv-1001",
+    "referenceId": "VB-2026-1001",
+    "category": "Solid Waste Management",
+    "severity": "High",
+    "department": "Swachh Indore Mission / Waste Mgmt",
+    "ward": "Ward 44 - Rajwada",
+    "location": "Near Rajwada Chowk, Indore (22.7196° N, 75.8577° E)",
+    "structuredGrievance": "Overflowing public waste disposal bin near Rajwada market causing pedestrian blockage and hygiene concern. Immediate tipper dispatch requested.",
+    "language": "Hindi / Malvi",
+    "name": "Rajesh Agrawal",
+    "phone": "9826012345",
+    "complaint": "राजवाड़ा चौक के पास कचरा पेटी भर गई है और कचरा सड़क पर फैल रहा है। कृपया जल्द उठवाएं।",
+    "status": "In Progress",
+    "submittedAt": "2026-09-06T06:30:00.000Z",
+    "timeline": [
+      {
+        "stage": "Submitted",
+        "status": "Under Review",
+        "timestamp": "2026-09-06T06:30:00.000Z",
+        "note": "Report logged via Voice Input (Malvi dialect). Gemini AI structured grievance."
+      },
+      {
+        "stage": "Assigned",
+        "status": "Under Review",
+        "timestamp": "2026-09-06T07:15:00.000Z",
+        "note": "Assigned to Ward 44 Sanitation Inspector Mr. Mukesh Solanki."
+      },
+      {
+        "stage": "In Progress",
+        "status": "In Progress",
+        "timestamp": "2026-09-06T08:00:00.000Z",
+        "note": "IMC Swachhata Tipper Van #28 dispatched to Rajwada site."
+      }
+    ]
+  },
+  {
+    "id": "grv-1002",
+    "referenceId": "VB-2026-1002",
+    "category": "Road Maintenance",
+    "severity": "Medium",
+    "department": "Public Works Department (PWD)",
+    "ward": "Ward 54 - Vijay Nagar",
+    "location": "AB Road near Scheme 54, Vijay Nagar, Indore",
+    "structuredGrievance": "Deep pothole on main service road causing traffic slowdown and two-wheeler hazard after recent rainfall.",
+    "language": "English",
+    "name": "Pooja Sharma",
+    "phone": "9425098765",
+    "complaint": "Deep pothole near Vijay Nagar service road creating accident hazard for motorbikes.",
+    "status": "Resolved",
+    "submittedAt": "2026-09-05T09:15:00.000Z",
+    "timeline": [
+      {
+        "stage": "Submitted",
+        "status": "Under Review",
+        "timestamp": "2026-09-05T09:15:00.000Z",
+        "note": "Report submitted with photo geotag evidence."
+      },
+      {
+        "stage": "Assigned",
+        "status": "In Progress",
+        "timestamp": "2026-09-05T10:45:00.000Z",
+        "note": "PWD Quick Repair Crew #07 notified."
+      },
+      {
+        "stage": "Resolved",
+        "status": "Resolved",
+        "timestamp": "2026-09-05T16:20:00.000Z",
+        "note": "Pothole filled with cold mix asphalt and compacted. Verified by Ward Engineer."
+      }
+    ]
+  },
+  {
+    "id": "grv-1003",
+    "referenceId": "VB-2026-1003",
+    "category": "Street Lighting",
+    "severity": "Low",
+    "department": "Electrical & Energy Cell",
+    "ward": "Ward 22 - Palasia",
+    "location": "Old Palasia Main Road, Indore",
+    "structuredGrievance": "Three consecutive LED streetlights non-operational causing dark stretch near senior citizen walking track.",
+    "language": "Hindi",
+    "name": "Amitabh Verma",
+    "phone": "9993322110",
+    "complaint": "ओल्ड पलासिया मेन रोड पर 3 स्ट्रीट लाइट पिछले 2 दिन से बंद हैं। रात में अंधेरा रहता है।",
+    "status": "Resolved",
+    "submittedAt": "2026-09-04T18:40:00.000Z",
+    "timeline": [
+      {
+        "stage": "Submitted",
+        "status": "Under Review",
+        "timestamp": "2026-09-04T18:40:00.000Z",
+        "note": "Logged via VoiceBridge Web Portal."
+      },
+      {
+        "stage": "In Progress",
+        "status": "In Progress",
+        "timestamp": "2026-09-05T11:00:00.000Z",
+        "note": "Electrical line technician dispatched for driver replacement."
+      },
+      {
+        "stage": "Resolved",
+        "status": "Resolved",
+        "timestamp": "2026-09-05T14:30:00.000Z",
+        "note": "Replaced two 70W LED drivers. All lights operational."
+      }
+    ]
+  },
+  {
+    "id": "grv-1004",
+    "referenceId": "VB-2026-1004",
+    "category": "Water Supply",
+    "severity": "High",
+    "department": "Narmada Water Works",
+    "ward": "Ward 31 - Chhappan Dukan",
+    "location": "56 Dukan Food Street, New Palasia, Indore",
+    "structuredGrievance": "Pipeline valve leakage causing clean drinking water wastage and low pressure in commercial food zone.",
+    "language": "English",
+    "name": "Deepak Chouhan",
+    "phone": "9893456789",
+    "complaint": "Drinking water pipeline valve leaking near shop #12 at 56 Dukan.",
+    "status": "Under Review",
+    "submittedAt": "2026-09-06T09:10:00.000Z",
+    "timeline": [
+      {
+        "stage": "Submitted",
+        "status": "Under Review",
+        "timestamp": "2026-09-06T09:10:00.000Z",
+        "note": "Automated priority alert flagged by Gemini AI due to clean water wastage."
+      }
+    ]
+  },
+  {
+    "id": "grv-1005",
+    "referenceId": "VB-2026-1005",
+    "category": "Drainage & Sewerage",
+    "severity": "High",
+    "department": "Drainage Department",
+    "ward": "Ward 15 - Sarafa",
+    "location": "Sarafa Night Food Market, Indore",
+    "structuredGrievance": "Choked underground storm drainage chamber overflowing during morning cleaning hours.",
+    "language": "Hindi",
+    "name": "Kailash Soni",
+    "phone": "9753124680",
+    "complaint": "सराफा मार्केट में नाली का चेंबर चोक हो गया है जिससे बदबू आ रही है।",
+    "status": "In Progress",
+    "submittedAt": "2026-09-06T05:00:00.000Z",
+    "timeline": [
+      {
+        "stage": "Submitted",
+        "status": "Under Review",
+        "timestamp": "2026-09-06T05:00:00.000Z",
+        "note": "Early morning grievance logged."
+      },
+      {
+        "stage": "In Progress",
+        "status": "In Progress",
+        "timestamp": "2026-09-06T07:30:00.000Z",
+        "note": "IMC Jetting and Suction Machine Super Sucker unit deployed on site."
+      }
+    ]
+  }
+]
