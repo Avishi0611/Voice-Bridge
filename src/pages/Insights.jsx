@@ -12,6 +12,7 @@ import {
   Users,
 } from 'lucide-react'
 import { useState } from 'react'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const indoreHotspots = [
   {
@@ -92,6 +93,7 @@ const weeklyWards = [
 ]
 
 function Insights() {
+  const { t } = useLanguage()
   const [selectedWard, setSelectedWard] = useState('All')
 
   return (
@@ -106,22 +108,22 @@ function Insights() {
         <div>
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-100 px-3.5 py-1 text-xs font-extrabold text-[#5227eb]">
-              <Trophy className="h-3.5 w-3.5 text-amber-500" /> India's Cleanest City • Swachh Survekshan #1
+              <Trophy className="h-3.5 w-3.5 text-amber-500" /> {t('insightCleanestCityBadge')}
             </span>
             <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700 border border-emerald-200">
-              Live IMC Grid
+              {t('insightLiveGrid')}
             </span>
           </div>
           <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0f1115]">
-            Indore Community Pulse
+            {t('insightCommunityPulse')}
           </h1>
           <p className="mt-2 text-sm sm:text-base text-slate-600">
-            Real-time grievance analytics across Indore Municipal Corporation (IMC) zones and wards.
+            {t('insightSubtitle')}
           </p>
         </div>
         <div className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-2.5 shadow-sm">
           <MapPin className="h-4 w-4 text-[#5227eb]" />
-          <span className="text-xs sm:text-sm font-bold text-slate-800">Indore, MP (Zone 1 - 19)</span>
+          <span className="text-xs sm:text-sm font-bold text-slate-800">{t('insightIndoreZones')}</span>
         </div>
       </div>
 
@@ -132,14 +134,14 @@ function Insights() {
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-5">
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                Issue Distribution by Ward
+                {t('insightDistributionByWard')}
               </p>
               <h2 className="mt-1 text-xl sm:text-2xl font-extrabold text-[#0f1115]">
-                Requests by Indore Area
+                {t('insightRequestsByArea')}
               </h2>
             </div>
             <span className="flex items-center gap-1 rounded-full bg-violet-50 px-3 py-1 text-xs font-bold text-[#5227eb]">
-              <BarChart3 className="h-4 w-4" /> This Month: 262 Reports
+              <BarChart3 className="h-4 w-4" /> {t('insightThisMonthReports')}
             </span>
           </div>
 
@@ -155,7 +157,7 @@ function Insights() {
                     {item.area}
                   </span>
                   <span className="text-slate-500">
-                    <strong className="text-[#0f1115]">{item.count}</strong> grievances
+                    <strong className="text-[#0f1115]">{item.count}</strong> {t('insightGrievancesUnit')}
                   </span>
                 </div>
                 {/* Visual Bar Track */}
@@ -174,19 +176,19 @@ function Insights() {
           {/* Weekly Summary Footer */}
           <div className="mt-8 grid grid-cols-4 gap-2 border-t border-slate-100 pt-5 text-center text-xs">
             <div className="rounded-xl bg-slate-50 p-2.5">
-              <span className="block text-slate-400 font-semibold">Week 1</span>
+              <span className="block text-slate-400 font-semibold">{t('insightWeek1')}</span>
               <span className="text-sm font-extrabold text-slate-800">58</span>
             </div>
             <div className="rounded-xl bg-slate-50 p-2.5">
-              <span className="block text-slate-400 font-semibold">Week 2</span>
+              <span className="block text-slate-400 font-semibold">{t('insightWeek2')}</span>
               <span className="text-sm font-extrabold text-slate-800">72</span>
             </div>
             <div className="rounded-xl bg-slate-50 p-2.5">
-              <span className="block text-slate-400 font-semibold">Week 3</span>
+              <span className="block text-slate-400 font-semibold">{t('insightWeek3')}</span>
               <span className="text-sm font-extrabold text-slate-800">64</span>
             </div>
             <div className="rounded-xl bg-violet-50 p-2.5 border border-violet-200">
-              <span className="block text-[#5227eb] font-bold">Week 4</span>
+              <span className="block text-[#5227eb] font-bold">{t('insightWeek4')}</span>
               <span className="text-sm font-extrabold text-[#5227eb]">68</span>
             </div>
           </div>
@@ -197,7 +199,7 @@ function Insights() {
           <div className="relative z-10">
             <div className="flex items-center justify-between">
               <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-violet-300">
-                Most Active Ward
+                {t('insightMostActiveWard')}
               </span>
               <TrendingUp className="h-6 w-6 text-violet-400" />
             </div>
@@ -212,8 +214,8 @@ function Insights() {
 
             <div className="mt-6 rounded-2xl bg-white/5 p-4 border border-white/10">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-slate-400">Resolution Rate</span>
-                <span className="font-bold text-emerald-400">90.6% resolved</span>
+                <span className="text-slate-400">{t('insightResolutionRate')}</span>
+                <span className="font-bold text-emerald-400">90.6% {t('insightResolvedSuffix')}</span>
               </div>
               <div className="mt-2 h-2 w-full rounded-full bg-white/10 overflow-hidden">
                 <div className="h-full w-[90.6%] rounded-full bg-emerald-400" />
@@ -224,10 +226,10 @@ function Insights() {
           <div className="relative z-10 mt-8 flex items-end justify-between border-t border-white/10 pt-6">
             <div>
               <span className="text-3xl sm:text-4xl font-extrabold text-violet-300">+18%</span>
-              <span className="block text-xs font-semibold text-slate-400">citizen participation</span>
+              <span className="block text-xs font-semibold text-slate-400">{t('insightCitizenParticipation')}</span>
             </div>
             <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-300 border border-emerald-500/30">
-              IMC On Duty
+              {t('insightImcOnDuty')}
             </span>
           </div>
 
@@ -240,9 +242,9 @@ function Insights() {
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-extrabold text-slate-900">
-            Indore Priority Zones & Municipal Attention
+            {t('insightPriorityZonesTitle')}
           </h2>
-          <span className="text-xs font-bold text-slate-500">6 Major IMC Zones</span>
+          <span className="text-xs font-bold text-slate-500">{t('insightMajorZonesCount')}</span>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -282,11 +284,11 @@ function Insights() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-xl font-black text-[#0f1115]">{hotspot.requests}</p>
-                    <p className="text-[11px] font-semibold text-slate-500">Total logged</p>
+                    <p className="text-[11px] font-semibold text-slate-500">{t('insightTotalLogged')}</p>
                   </div>
                   <div className="text-right">
                     <p className="text-xl font-black text-emerald-600">{hotspot.resolved}</p>
-                    <p className="text-[11px] font-semibold text-slate-500">Action taken</p>
+                    <p className="text-[11px] font-semibold text-slate-500">{t('insightActionTaken')}</p>
                   </div>
                 </div>
                 <p className="mt-2 text-[11px] font-medium text-slate-600 border-t border-slate-200/60 pt-2">

@@ -103,12 +103,13 @@ const fallbackComplaints = [
   },
 ]
 
-const departmentPerformance = [
-  { name: 'Swachhata / Waste Mgmt', rate: 94, sla: '< 8 hrs', color: 'bg-emerald-500' },
-  { name: 'Narmada Water Supply', rate: 91, sla: '< 12 hrs', color: 'bg-sky-500' },
-  { name: 'Electrical & Street Lights', rate: 96, sla: '< 6 hrs', color: 'bg-amber-500' },
-  { name: 'PWD Roads & Infrastructure', rate: 87, sla: '< 24 hrs', color: 'bg-indigo-500' },
-]
+const formatStatus = (status, t) => {
+  if (status === 'Resolved') return t('statusResolved')
+  if (status === 'In Progress') return t('statusInProgress')
+  if (status === 'Under Review') return t('statusUnderReview')
+  if (status === 'Pending') return t('statusPending')
+  return status
+}
 
 const statusStyles = {
   Resolved: { bg: 'bg-emerald-50 text-emerald-700 border-emerald-200', dot: 'bg-emerald-500' },
@@ -116,14 +117,6 @@ const statusStyles = {
   'Under Review': { bg: 'bg-amber-50 text-amber-700 border-amber-200', dot: 'bg-amber-500 animate-ping' },
   Pending: { bg: 'bg-amber-50 text-amber-700 border-amber-200', dot: 'bg-amber-500' },
 }
-
-const lifecycleStages = [
-  { id: 1, label: 'Submitted & Verified', icon: Fingerprint, desc: 'Aadhaar UIDAI authenticated' },
-  { id: 2, label: 'AI Structured', icon: Sparkles, desc: 'Gemini 3.6 Flash triage & SLA' },
-  { id: 3, label: 'Ward Assigned', icon: Building2, desc: 'Routed to IMC Ward Engineer' },
-  { id: 4, label: 'Field Deployed', icon: Truck, desc: 'On-ground crew & machinery' },
-  { id: 5, label: 'Verified Closure', icon: CheckCircle2, desc: 'Photo proof & citizen sign-off' },
-]
 
 function Dashboard() {
   const { t } = useLanguage()
@@ -186,11 +179,26 @@ function Dashboard() {
     return matchesFilter && matchesSearch
   })
 
+  const lifecycleStages = [
+    { id: 1, label: t('dashLifecycleStage1'), icon: Fingerprint, desc: t('dashLifecycleStage1Desc') },
+    { id: 2, label: t('dashLifecycleStage2'), icon: Sparkles, desc: t('dashLifecycleStage2Desc') },
+    { id: 3, label: t('dashLifecycleStage3'), icon: Building2, desc: t('dashLifecycleStage3Desc') },
+    { id: 4, label: t('dashLifecycleStage4'), icon: Truck, desc: t('dashLifecycleStage4Desc') },
+    { id: 5, label: t('dashLifecycleStage5'), icon: CheckCircle2, desc: t('dashLifecycleStage5Desc') },
+  ]
+
+  const departmentPerformance = [
+    { name: t('deptWaste'), rate: 94, sla: '< 8 hrs', color: 'bg-emerald-500' },
+    { name: t('deptWater'), rate: 91, sla: '< 12 hrs', color: 'bg-sky-500' },
+    { name: t('deptElectric'), rate: 96, sla: '< 6 hrs', color: 'bg-amber-500' },
+    { name: t('deptPwd'), rate: 87, sla: '< 24 hrs', color: 'bg-indigo-500' },
+  ]
+
   // Pie chart data
   const statusData = [
-    { name: 'Resolved', value: stats.resolved || 2, color: '#10b981' },
-    { name: 'In Progress', value: stats.inProgress || 2, color: '#0284c7' },
-    { name: 'Under Review', value: stats.pending || 1, color: '#f59e0b' },
+    { name: t('statusResolved'), value: stats.resolved || 2, color: '#10b981' },
+    { name: t('statusInProgress'), value: stats.inProgress || 2, color: '#0284c7' },
+    { name: t('statusUnderReview'), value: stats.pending || 1, color: '#f59e0b' },
   ]
 
   // Determine active step index in lifecycle for selectedComplaint
@@ -217,26 +225,26 @@ function Dashboard() {
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-100 px-3 py-1 text-xs font-black text-[#5227eb]">
                 <Sparkles className="h-3.5 w-3.5" />
-                CITIZEN COMMAND CENTER
+                {t('dashTag')}
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700 border border-emerald-200">
                 <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                IMC Live Sync Connected
+                {t('dashLiveConnected')}
               </span>
             </div>
 
             <h1 className="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#0f1115]">
-              Welcome Back, Hariom Tavar <span aria-hidden="true">👋</span>
+              {t('dashWelcomeBackName')} <span aria-hidden="true">👋</span>
             </h1>
 
             <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600 font-medium">
-              Monitor, track, and verify your Indore municipal grievances. Connected to IMC Ward #44 (Rajwada Hub).
+              {t('dashWelcomeSubtitle')}
             </p>
 
             <div className="mt-5 flex flex-wrap items-center gap-4 text-xs font-bold text-slate-500">
               <span className="flex items-center gap-1.5 text-slate-700 bg-white/80 px-3 py-1 rounded-full border border-slate-200">
                 <Fingerprint className="h-3.5 w-3.5 text-emerald-600" />
-                Aadhaar UID: XXXX-XXXX-8921
+                {t('dashAadhaarMasked')}
               </span>
               <span className="flex items-center gap-1.5 bg-white/80 px-3 py-1 rounded-full border border-slate-200">
                 <CalendarDays className="h-3.5 w-3.5 text-[#5227eb]" />
@@ -244,7 +252,7 @@ function Dashboard() {
               </span>
               <span className="flex items-center gap-1.5 text-violet-700 bg-violet-50 px-3 py-1 rounded-full border border-violet-200">
                 <MapPin className="h-3.5 w-3.5 text-violet-600" />
-                Indore Ward 44 • Central Zone
+                {t('dashWardCentral')}
               </span>
             </div>
           </div>
@@ -255,10 +263,10 @@ function Dashboard() {
               onClick={loadData}
               disabled={isSyncing}
               className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 px-4 py-3 text-xs font-extrabold text-slate-700 shadow-sm hover:border-violet-300 hover:text-[#5227eb] transition"
-              title="Sync latest updates from Indore Municipal Corporation"
+              title={t('dashSyncButton')}
             >
               <RefreshCw className={`h-3.5 w-3.5 ${isSyncing ? 'animate-spin text-[#5227eb]' : ''}`} />
-              <span>{isSyncing ? 'Syncing...' : 'Sync IMC Data'}</span>
+              <span>{isSyncing ? t('dashSyncing') : t('dashSyncButton')}</span>
             </button>
 
             <Link
@@ -266,7 +274,7 @@ function Dashboard() {
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#5227eb] to-[#7c4dff] px-6 py-3 text-sm font-extrabold text-white shadow-xl shadow-violet-500/30 hover:-translate-y-0.5 hover:shadow-violet-500/50 transition"
             >
               <Plus className="h-4 w-4" />
-              <span>New Voice Grievance</span>
+              <span>{t('dashNewVoiceBtn')}</span>
             </Link>
           </div>
         </div>
@@ -280,20 +288,20 @@ function Dashboard() {
       <div>
         <div className="mb-4 flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-black text-slate-900">Your Civic Overview</h2>
-            <p className="text-xs text-slate-500 font-medium">Real-time status of your registered reports across Indore.</p>
+            <h2 className="text-xl font-black text-slate-900">{t('dashOverviewTitle')}</h2>
+            <p className="text-xs text-slate-500 font-medium">{t('dashOverviewSubtitle')}</p>
           </div>
           <span className="text-xs font-extrabold text-violet-700 bg-violet-50 px-3 py-1 rounded-full border border-violet-200">
-            {stats.resolutionRate || 80}% Resolution Efficiency
+            {stats.resolutionRate || 80}% {t('dashResolutionEfficiency')}
           </span>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {[
             {
-              label: 'Total Complaints',
+              label: t('dashTotalLabel'),
               value: String(stats.total || complaints.length),
-              sub: 'Registered with IMC',
+              sub: t('dashTotalSub'),
               filterKey: 'ALL',
               icon: FileText,
               color: 'from-blue-500 to-indigo-600',
@@ -302,9 +310,9 @@ function Dashboard() {
               textColor: 'text-blue-600',
             },
             {
-              label: 'Under Review',
+              label: t('dashPendingLabel'),
               value: String(stats.pending || 1),
-              sub: 'Awaiting triage & engineer assignment',
+              sub: t('dashPendingSub'),
               filterKey: 'PENDING',
               icon: Clock3,
               color: 'from-amber-500 to-orange-500',
@@ -313,9 +321,9 @@ function Dashboard() {
               textColor: 'text-amber-600',
             },
             {
-              label: 'In Progress',
+              label: t('dashInProgressLabel'),
               value: String(stats.inProgress || 2),
-              sub: 'Field team / vehicle deployed',
+              sub: t('dashInProgressSub'),
               filterKey: 'IN_PROGRESS',
               icon: Activity,
               color: 'from-sky-500 to-cyan-500',
@@ -324,9 +332,9 @@ function Dashboard() {
               textColor: 'text-sky-600',
             },
             {
-              label: 'Resolved',
+              label: t('dashResolvedLabel'),
               value: String(stats.resolved || 2),
-              sub: 'Closed with photo verification',
+              sub: t('dashResolvedSub'),
               filterKey: 'RESOLVED',
               icon: CheckCircle2,
               color: 'from-emerald-500 to-teal-500',
@@ -339,7 +347,7 @@ function Dashboard() {
             const isFilterSelected = activeFilter === item.filterKey
             return (
               <button
-                key={item.label}
+                key={item.filterKey}
                 type="button"
                 onClick={() => setActiveFilter(item.filterKey)}
                 className={`text-left group relative overflow-hidden rounded-3xl border bg-white p-6 shadow-sm transition-all duration-300 ${
@@ -361,7 +369,7 @@ function Dashboard() {
                 <p className="mt-1 text-xs font-semibold text-slate-500 line-clamp-1">{item.sub}</p>
 
                 <div className="mt-4 flex items-center justify-between text-[11px] font-bold text-slate-400 group-hover:text-[#5227eb] transition">
-                  <span>Click to filter table</span>
+                  <span>{t('dashClickToFilter')}</span>
                   <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
                 </div>
               </button>
@@ -370,22 +378,22 @@ function Dashboard() {
         </div>
       </div>
 
-      {/* Interactive Live Complaint Lifecycle Tracker (Replaces generic Future Enhancements) */}
+      {/* Interactive Live Complaint Lifecycle Tracker */}
       <article className="overflow-hidden rounded-[32px] border border-slate-200/90 bg-white p-6 sm:p-8 shadow-xl shadow-slate-900/5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
           <div>
             <div className="flex items-center gap-2">
               <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-ping" />
-              <h2 className="text-xl font-black text-slate-900">Live Complaint Lifecycle Tracker</h2>
+              <h2 className="text-xl font-black text-slate-900">{t('dashLifecycleTracker')}</h2>
             </div>
             <p className="text-xs text-slate-500 font-medium mt-1">
-              Real-time progression from citizen voice intake to on-ground municipal sign-off.
+              {t('dashLifecycleSubtitle')}
             </p>
           </div>
 
           {/* Selector for active complaint to inspect */}
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-slate-400">Inspecting:</span>
+            <span className="text-xs font-bold text-slate-400">{t('dashInspectingLabel')}</span>
             <select
               value={selectedComplaint?.referenceId || ''}
               onChange={(e) => {
@@ -416,7 +424,7 @@ function Dashboard() {
               <div className="flex items-center gap-2">
                 <span className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-0.5 font-extrabold ${statusStyles[selectedComplaint.status]?.bg || statusStyles['Under Review'].bg}`}>
                   <span className={`h-2 w-2 rounded-full ${statusStyles[selectedComplaint.status]?.dot || statusStyles['Under Review'].dot}`} />
-                  {selectedComplaint.status}
+                  {formatStatus(selectedComplaint.status, t)}
                 </span>
                 <span className="font-bold text-slate-500">
                   {new Date(selectedComplaint.submittedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
@@ -465,14 +473,14 @@ function Dashboard() {
                     <StageIcon className="h-5 w-5" />
                   </div>
                   <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
-                    Stage 0{stage.id}
+                    {t('dashStagePrefix')}{stage.id}
                   </span>
                   <p className="text-xs font-black text-slate-900 mt-0.5">{stage.label}</p>
                   <p className="text-[11px] text-slate-500 mt-1 line-clamp-2">{stage.desc}</p>
 
                   {isCompleted && (
                     <span className="mt-2 inline-flex items-center gap-1 text-[10px] font-black text-emerald-600">
-                      ✓ Active / Logged
+                      {t('dashActiveLogged')}
                     </span>
                   )}
                 </div>
@@ -485,7 +493,7 @@ function Dashboard() {
         {selectedComplaint?.timeline && selectedComplaint.timeline.length > 0 && (
           <div className="mt-6 border-t border-slate-100 pt-5">
             <span className="text-xs font-black uppercase tracking-wider text-slate-400">
-              Audit Trail & Officer Log
+              {t('dashAuditTrail')}
             </span>
             <div className="mt-3 space-y-2">
               {selectedComplaint.timeline.map((event, idx) => (
@@ -513,11 +521,11 @@ function Dashboard() {
         <article className="rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-7 shadow-sm">
           <div className="flex items-center justify-between border-b border-slate-100 pb-4">
             <div>
-              <h2 className="text-lg font-black text-slate-900">Complaint Status Ratio</h2>
-              <p className="text-xs text-slate-500 font-medium">Breakdown across current pipeline.</p>
+              <h2 className="text-lg font-black text-slate-900">{t('dashStatusRatioTitle')}</h2>
+              <p className="text-xs text-slate-500 font-medium">{t('dashStatusRatioSubtitle')}</p>
             </div>
             <span className="rounded-full bg-violet-50 px-3 py-1 text-xs font-extrabold text-[#5227eb]">
-              Total: {stats.total}
+              {t('dashTotalLabel')}: {stats.total}
             </span>
           </div>
 
@@ -549,11 +557,11 @@ function Dashboard() {
         <article className="rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-7 shadow-sm">
           <div className="flex items-center justify-between border-b border-slate-100 pb-4">
             <div>
-              <h2 className="text-lg font-black text-slate-900">IMC Department Velocity</h2>
-              <p className="text-xs text-slate-500 font-medium">Average turnaround time by municipal department.</p>
+              <h2 className="text-lg font-black text-slate-900">{t('dashDeptVelocityTitle')}</h2>
+              <p className="text-xs text-slate-500 font-medium">{t('dashDeptVelocitySubtitle')}</p>
             </div>
             <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-extrabold text-emerald-700 border border-emerald-200">
-              Swachh 7x Standard
+              {t('dashSwachhStandard')}
             </span>
           </div>
 
@@ -575,9 +583,9 @@ function Dashboard() {
           </div>
 
           <div className="mt-6 rounded-2xl bg-slate-50 p-3.5 text-xs text-slate-600 border border-slate-100 flex items-center justify-between">
-            <span className="font-medium">Fastest Ward Today: <strong className="text-slate-900">Ward 44 (Rajwada)</strong></span>
+            <span className="font-medium">{t('dashFastestWardToday')}: <strong className="text-slate-900">Ward 44 (Rajwada)</strong></span>
             <Link to="/insights" className="font-extrabold text-[#5227eb] hover:underline flex items-center gap-1">
-              Explore Ward Pulse <ArrowRight className="h-3.5 w-3.5" />
+              {t('dashExploreWardPulse')} <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
         </article>
@@ -587,8 +595,8 @@ function Dashboard() {
       <article className="rounded-3xl border border-slate-200/90 bg-white shadow-xl shadow-slate-900/5 overflow-hidden">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/80 px-6 py-5">
           <div>
-            <h2 className="text-xl font-black text-slate-900">Registered Grievance Records</h2>
-            <p className="text-xs text-slate-500 font-medium">Click any row to inspect its live lifecycle tracker above.</p>
+            <h2 className="text-xl font-black text-slate-900">{t('dashRegisteredRecords')}</h2>
+            <p className="text-xs text-slate-500 font-medium">{t('dashTableHelper')}</p>
           </div>
 
           {/* Search and Quick Filter Badges */}
@@ -599,23 +607,28 @@ function Dashboard() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search reference, ward..."
+                placeholder={t('dashSearchPlaceholder')}
                 className="pl-8 pr-3 py-1.5 text-xs rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-violet-500 outline-none w-44 sm:w-56"
               />
             </div>
 
-            {['ALL', 'PENDING', 'IN_PROGRESS', 'RESOLVED'].map((filter) => (
+            {[
+              { key: 'ALL', label: t('dashFilterAll') },
+              { key: 'PENDING', label: t('dashFilterPending') },
+              { key: 'IN_PROGRESS', label: t('dashFilterInProgress') },
+              { key: 'RESOLVED', label: t('dashFilterResolved') },
+            ].map(({ key, label }) => (
               <button
-                key={filter}
+                key={key}
                 type="button"
-                onClick={() => setActiveFilter(filter)}
+                onClick={() => setActiveFilter(key)}
                 className={`rounded-xl px-3 py-1.5 text-xs font-extrabold transition ${
-                  activeFilter === filter
+                  activeFilter === key
                     ? 'bg-[#5227eb] text-white shadow-sm'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
-                {filter.replace('_', ' ')}
+                {label}
               </button>
             ))}
           </div>
@@ -625,20 +638,20 @@ function Dashboard() {
           <table className="w-full min-w-[760px] text-left text-sm">
             <thead className="bg-slate-50/80 text-[11px] uppercase tracking-wider text-slate-500 font-black border-b border-slate-100">
               <tr>
-                <th className="px-6 py-3.5">Reference ID</th>
-                <th className="px-6 py-3.5">Category & Summary</th>
-                <th className="px-6 py-3.5">Ward / Location</th>
-                <th className="px-6 py-3.5">Severity</th>
-                <th className="px-6 py-3.5">Status</th>
-                <th className="px-6 py-3.5">Submitted</th>
-                <th className="px-6 py-3.5 text-right">Action</th>
+                <th className="px-6 py-3.5">{t('dashColReference')}</th>
+                <th className="px-6 py-3.5">{t('dashColCategorySummary')}</th>
+                <th className="px-6 py-3.5">{t('dashColWardLocation')}</th>
+                <th className="px-6 py-3.5">{t('dashColSeverity')}</th>
+                <th className="px-6 py-3.5">{t('dashColStatus')}</th>
+                <th className="px-6 py-3.5">{t('dashColSubmitted')}</th>
+                <th className="px-6 py-3.5 text-right">{t('dashColAction')}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {filteredComplaints.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="text-center py-10 text-xs text-slate-500 font-medium">
-                    No complaints matching current filter.
+                    {t('dashNoMatchingFilter')}
                   </td>
                 </tr>
               ) : (
@@ -680,7 +693,7 @@ function Dashboard() {
                       <td className="px-6 py-4">
                         <span className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-extrabold ${style.bg}`}>
                           <span className={`h-1.5 w-1.5 rounded-full ${style.dot}`} />
-                          {complaint.status}
+                          {formatStatus(complaint.status, t)}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-xs text-slate-500">
@@ -700,7 +713,7 @@ function Dashboard() {
                           className="inline-flex items-center gap-1 text-xs font-extrabold text-[#5227eb] hover:underline"
                         >
                           <Eye className="h-3.5 w-3.5" />
-                          <span>Track</span>
+                          <span>{t('dashTrackAction')}</span>
                         </button>
                       </td>
                     </tr>
@@ -714,33 +727,33 @@ function Dashboard() {
 
       {/* Quick Actions Grid */}
       <div>
-        <h2 className="mb-4 text-xl font-black text-slate-900">Quick Civic Actions</h2>
+        <h2 className="mb-4 text-xl font-black text-slate-900">{t('dashQuickActionsTitle')}</h2>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {[
             {
-              title: 'Voice Grievance',
-              description: 'Record in Hindi or Malvi with photo proof.',
+              title: t('dashActionVoiceGrievance'),
+              description: t('dashActionVoiceDesc'),
               icon: Plus,
               to: '/complaints/new',
               tone: 'blue',
             },
             {
-              title: 'Complaint History',
-              description: 'Access complete timeline & resolution certificates.',
+              title: t('dashActionHistory'),
+              description: t('dashActionHistoryDesc'),
               icon: ListChecks,
               to: '/history',
               tone: 'sky',
             },
             {
-              title: 'Indore Ward Pulse',
-              description: 'Explore live hotspots across 85 municipal wards.',
+              title: t('dashActionPulse'),
+              description: t('dashActionPulseDesc'),
               icon: BarChart3,
               to: '/insights',
               tone: 'green',
             },
             {
-              title: 'Citizen Profile & Aadhaar',
-              description: 'Manage verified credentials & notifications.',
+              title: t('dashActionProfile'),
+              description: t('dashActionProfileDesc'),
               icon: Settings,
               to: '/profile',
               tone: 'slate',

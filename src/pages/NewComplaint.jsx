@@ -174,10 +174,10 @@ function NewComplaint() {
       <div className="mb-8">
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-100 px-3 py-1 text-xs font-extrabold text-[#5227eb]">
-            <Volume2 className="h-3.5 w-3.5" /> Indore Civic Voice
+            <Volume2 className="h-3.5 w-3.5" /> {t('civicVoiceBadge')}
           </span>
           <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700 border border-emerald-200">
-            IMC 311 Integrated
+            {t('imc311Badge')}
           </span>
         </div>
         <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
@@ -199,7 +199,7 @@ function NewComplaint() {
               {t('issue')} <span className="text-red-500">*</span>
             </label>
             <span className="text-xs font-semibold text-slate-400">
-              {isTitleListening ? '🎙️ Speaking...' : 'Speak or type'}
+              {isTitleListening ? t('voiceSpeaking') : t('voiceSpeakOrType')}
             </span>
           </div>
           <div className="relative">
@@ -224,7 +224,7 @@ function NewComplaint() {
                 else startVoiceInput('title')
               }}
               aria-label={isTitleListening ? t('stopRecording') : t('recordTitle')}
-              title={isTitleListening ? t('stopRecording') : 'Speak issue title'}
+              title={isTitleListening ? t('stopRecording') : t('recordTitle')}
               className={`absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-xl p-2.5 transition ${
                 isTitleListening
                   ? 'bg-red-500 text-white shadow-lg shadow-red-500/30 animate-pulse'
@@ -241,7 +241,7 @@ function NewComplaint() {
               className="mt-2 flex items-center gap-2 text-xs font-bold text-red-600"
             >
               <span className="flex h-2 w-2 rounded-full bg-red-500 animate-ping" />
-              Listening to your voice ({speechLanguage}). Say your problem title...
+              {t('voiceListeningTitle')}
             </motion.div>
           )}
         </div>
@@ -253,7 +253,7 @@ function NewComplaint() {
               {t('tellMore')} <span className="text-red-500">*</span>
             </label>
             <span className="text-xs font-semibold text-slate-400">
-              {isListening ? '🎙️ Recording...' : 'Live transcription'}
+              {isListening ? t('voiceSpeaking') : t('voiceLiveTranscription')}
             </span>
           </div>
           <div className="relative">
@@ -295,7 +295,7 @@ function NewComplaint() {
               className="mt-2 flex items-center gap-2 text-xs font-bold text-red-600"
             >
               <span className="flex h-2 w-2 rounded-full bg-red-500 animate-ping" />
-              Recording details in {languageName}. Speak freely...
+              {t('voiceRecordingDetails')} {languageName}. {t('voiceSpeakFreely')}
             </motion.div>
           )}
         </div>

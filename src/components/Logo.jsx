@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function Logo({ size = 'md', animated = true, subtitle = true, to = '/' }) {
+  const { t } = useLanguage()
   const isSm = size === 'sm'
   const isLg = size === 'lg'
 
@@ -45,7 +47,7 @@ export default function Logo({ size = 'md', animated = true, subtitle = true, to
         </span>
         {subtitle && (
           <span className="text-[10px] font-bold tracking-wider uppercase text-slate-400 mt-1 truncate">
-            Civic Action Platform
+            {t('civicActionPlatform')}
           </span>
         )}
       </div>
