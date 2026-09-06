@@ -1,5 +1,28 @@
 [
   {
+    "id": "grv-1788694921011-j03pc",
+    "referenceId": "VB-2026-1010",
+    "status": "Under Review",
+    "submittedAt": "2026-09-06T11:42:01.010Z",
+    "timeline": [
+      {
+        "stage": "Submitted",
+        "status": "Under Review",
+        "timestamp": "2026-09-06T11:42:01.010Z",
+        "note": "Complaint registered by citizen and analyzed with Gemini AI."
+      }
+    ],
+    "category": "Road Maintenance & Electricity",
+    "severity": "High",
+    "department": "Electricity Board & Public Works Department (PWD)",
+    "structuredGrievance": "इंदौर के एबी रोड क्षेत्र में सड़क पर बने गहरे गड्ढों तथा पिछले कई महीनों से जारी बिजली कटौती की गंभीर समस्या का तत्काल समाधान किया जाए।",
+    "language": "हिन्दी",
+    "name": "hariom tavar",
+    "phone": "9753560707",
+    "complaint": "AB Road  Hamare Gaon Mein ek mahine Se bijali Ki samasya Hai  Sarkar: 6 महीने से हमारे गांव में बिजली नहीं आ रहे हैं उसके लिए हम ने बहुत सारी कंप्लेंट लोकल ऑफिस में की है यहां से बिजली की समस्या में हम",
+    "imageName": "images 1.jpg"
+  },
+  {
     "id": "grv-1001",
     "referenceId": "VB-2026-1001",
     "category": "Solid Waste Management",
