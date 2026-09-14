@@ -32,7 +32,10 @@ import { Link } from 'react-router-dom'
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
 import QuickActionCard from '../components/QuickActionCard'
 import { useLanguage } from '../i18n/LanguageContext'
+import { DEMO_PROFILE } from '../services/demoAuth'
 import { getGrievances, getGrievanceStats } from '../services/grievanceStore'
+
+const PROFILE_STORAGE_KEY = 'voicebridge-citizen-profile'
 
 const fallbackComplaints = [
   {
@@ -119,7 +122,8 @@ const statusStyles = {
 }
 
 function Dashboard() {
-  const { t } = useLanguage()
+  const { t, localizeName } = useLanguage()
+  const [citizenName, setCitizenName] = useState('Avishi Jain')
   const [complaints, setComplaints] = useState(fallbackComplaints)
   const [selectedComplaint, setSelectedComplaint] = useState(fallbackComplaints[0])
   const [activeFilter, setActiveFilter] = useState('ALL')
@@ -153,6 +157,14 @@ function Dashboard() {
   }
 
   useEffect(() => {
+    try {
+      const profile = JSON.parse(localStorage.getItem(PROFILE_STORAGE_KEY) || '{}')
+      if (profile.name && !/^hariom\s+(tavar|tanwar)$/i.test(profile.name.trim())) {
+        setCitizenName(profile.name)
+      } else {
+        localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(DEMO_PROFILE))
+      }
+    } catch {}
     loadData()
   }, [])
 
@@ -234,7 +246,7 @@ function Dashboard() {
             </div>
 
             <h1 className="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#0f1115]">
-              {t('dashWelcomeBackName')} <span aria-hidden="true">👋</span>
+              {t('dashWelcomeBack')}, {localizeName(citizenName)} <span aria-hidden="true">👋</span>
             </h1>
 
             <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600 font-medium">

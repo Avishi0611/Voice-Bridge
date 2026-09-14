@@ -180,7 +180,7 @@ function Landing() {
   const currentStep = stepsData[activeStep] || stepsData[0]
 
   return (
-    <div className="min-h-screen overflow-hidden bg-[#f4f5f8] text-[#0f1115] selection:bg-violet-500 selection:text-white">
+    <div className="min-h-screen overflow-x-clip bg-[#f4f5f8] text-[#0f1115] selection:bg-violet-500 selection:text-white">
       {/* Live Municipal Dispatch Ticker */}
       <div className="bg-[#0f1115] text-xs font-semibold text-slate-300 py-2.5 border-b border-slate-800 overflow-hidden">
         <div className="flex items-center gap-6 whitespace-nowrap px-4">
@@ -397,7 +397,7 @@ function Landing() {
         </section>
 
         {/* 6-Step Visual Engine (Multilingual) */}
-        <section id="how-it-works" className="border-y border-slate-200/80 bg-white/70 py-20 backdrop-blur-xl">
+        <section id="how-it-works" className="scroll-mt-28 border-y border-slate-200/80 bg-white/70 py-20 backdrop-blur-xl">
           <div className="mx-auto max-w-7xl px-5 sm:px-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div>
@@ -691,7 +691,7 @@ function Landing() {
         </section>
 
         {/* Live Interactive Voice Grievance Simulator */}
-        <section id="simulator" className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+        <section id="simulator" className="scroll-mt-28 mx-auto max-w-7xl px-5 py-20 sm:px-8">
           <div className="rounded-[36px] border border-white/90 bg-gradient-to-br from-white via-violet-50/30 to-indigo-50/20 p-8 sm:p-12 shadow-2xl shadow-slate-900/10">
             <div className="max-w-2xl">
               <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#5227eb]">
@@ -777,7 +777,7 @@ function Landing() {
         </section>
 
         {/* Features Grid */}
-        <section id="features" className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+        <section id="features" className="scroll-mt-28 mx-auto max-w-7xl px-5 py-20 sm:px-8">
           <div className="max-w-2xl">
             <span className="text-xs font-black uppercase tracking-widest text-[#5227eb]">
               {t('featEverything')}

@@ -90,6 +90,29 @@ const baseEn = {
   navContact: 'Contact',
   login: 'Login',
   getStarted: 'Get Started',
+  welcomeBack: 'Welcome back',
+  loginTitle: 'Log in to your account',
+  loginDescription: 'Access your civic reports and service updates.',
+  demoAccount: 'Demo account',
+  emailAddress: 'Email address',
+  password: 'Password',
+  rememberMe: 'Remember me',
+  signingIn: 'Signing in...',
+  newToVoiceBridge: 'New to VoiceBridge?',
+  registerNowLink: 'Register now',
+  registration: 'Registration',
+  joinCivicNetwork: 'Join the civic network',
+  registrationDescription: 'Create an account to report issues and follow public service progress.',
+  citizen: 'Citizen',
+  government: 'Government',
+  fullName: 'Full Name',
+  officerName: 'Officer Name',
+  mobileNumber: 'Mobile Number',
+  department: 'Department',
+  savingRegistration: 'Saving registration...',
+  registerAsCitizen: 'Register as citizen',
+  registerAsOfficial: 'Register as official',
+  alreadyRegistered: 'Already registered?',
   simpler: 'Voice to civic action in Indore',
   hero: 'From citizen voice to government action.',
   heroDescription: 'A multilingual platform helping citizens report civic issues in Indore through voice, text, and photos, directly connected with Indore Municipal Corporation (IMC).',
@@ -313,7 +336,7 @@ const baseEn = {
   deptWater: 'Narmada Water Supply',
   deptElectric: 'Electrical & Street Lights',
   deptPwd: 'PWD Roads & Infrastructure',
-  dashWelcomeBackName: 'Welcome Back, Hariom Tavar',
+  dashWelcomeBackName: 'Welcome Back',
 
   // Community Insights
   insightCleanestCityBadge: "India's Cleanest City • Swachh Survekshan #1",
@@ -371,6 +394,29 @@ const baseHi = {
   settings: 'सेटिंग्स',
   signOut: 'साइन आउट',
   language: 'भाषा',
+  welcomeBack: 'वापसी पर स्वागत है',
+  loginTitle: 'अपने खाते में लॉग इन करें',
+  loginDescription: 'अपनी नागरिक शिकायतों और सेवा अपडेट देखें।',
+  demoAccount: 'डेमो खाता',
+  emailAddress: 'ईमेल पता',
+  password: 'पासवर्ड',
+  rememberMe: 'मुझे याद रखें',
+  signingIn: 'लॉग इन हो रहा है...',
+  newToVoiceBridge: 'VoiceBridge पर नए हैं?',
+  registerNowLink: 'अभी पंजीकरण करें',
+  registration: 'पंजीकरण',
+  joinCivicNetwork: 'नागरिक नेटवर्क से जुड़ें',
+  registrationDescription: 'समस्याएं दर्ज करने और सार्वजनिक सेवा की प्रगति देखने के लिए खाता बनाएं।',
+  citizen: 'नागरिक',
+  government: 'सरकार',
+  fullName: 'पूरा नाम',
+  officerName: 'अधिकारी का नाम',
+  mobileNumber: 'मोबाइल नंबर',
+  department: 'विभाग',
+  savingRegistration: 'पंजीकरण सुरक्षित हो रहा है...',
+  registerAsCitizen: 'नागरिक के रूप में पंजीकरण करें',
+  registerAsOfficial: 'अधिकारी के रूप में पंजीकरण करें',
+  alreadyRegistered: 'पहले से पंजीकृत हैं?',
   reportIssue: 'समस्या दर्ज करें',
   tellAttention: 'बताइए इंदौर में कहाँ ध्यान देने की जरूरत है',
   describeIssue: 'समस्या को लिखकर, बोलकर या तस्वीर के साथ बताइए ताकि नगर निगम तुरंत कार्रवाई करे।',
@@ -637,7 +683,7 @@ const baseHi = {
   deptWater: 'नर्मदा जल प्रदाय',
   deptElectric: 'विद्युत एवं प्रकाश व्यवस्था',
   deptPwd: 'लोक निर्माण विभाग (पीडब्ल्यूडी)',
-  dashWelcomeBackName: 'स्वागत है, हरिओम तंवर',
+  dashWelcomeBackName: 'स्वागत है',
 
   // Community Insights
   insightCleanestCityBadge: 'भारत का सबसे स्वच्छ शहर • स्वच्छ सर्वेक्षण #1',
@@ -686,7 +732,30 @@ const baseHi = {
 }
 
 const baseMal = {
-  ...baseHi,
+  ...baseEn,
+  welcomeBack: 'पाछा आवण पर राम-राम',
+  loginTitle: 'अपणे खाते में लॉग इन करो',
+  loginDescription: 'अपणी नागरिक शिकायत अर सेवा अपडेट देखो।',
+  demoAccount: 'डेमो खाता',
+  emailAddress: 'ईमेल पता',
+  password: 'पासवर्ड',
+  rememberMe: 'म्हाने याद राखो',
+  signingIn: 'लॉग इन हो रियो है...',
+  newToVoiceBridge: 'VoiceBridge पर नवा हो?',
+  registerNowLink: 'अभी पंजीकरण करो',
+  registration: 'पंजीकरण',
+  joinCivicNetwork: 'नागरिक नेटवर्क में जुड़ो',
+  registrationDescription: 'समस्या बताने अर सरकारी सेवा की प्रगति देखण वास्ते खाता बनाओ।',
+  citizen: 'नागरिक',
+  government: 'सरकार',
+  fullName: 'पूरो नाम',
+  officerName: 'अधिकारी को नाम',
+  mobileNumber: 'मोबाइल नंबर',
+  department: 'विभाग',
+  savingRegistration: 'पंजीकरण बच रियो है...',
+  registerAsCitizen: 'नागरिक बन के पंजीकरण करो',
+  registerAsOfficial: 'अधिकारी बन के पंजीकरण करो',
+  alreadyRegistered: 'पहले पंजीकृत हो?',
   civicWorkspace: 'नागरिक कार्यक्षेत्र',
   citizenDashboard: 'नागरिक डैशबोर्ड',
   tellAttention: 'बताओ भिया इंदौर में काईं तकलीफ है',
@@ -724,7 +793,7 @@ const baseMal = {
   dashTotalLabel: 'पूरी शिकायतें',
   dashPendingLabel: 'जाँच में है',
   dashResolvedLabel: 'काम हो गयो',
-  dashWelcomeBackName: 'राम-राम भिया, हरिओम तंवर',
+  dashWelcomeBackName: 'राम-राम भिया',
   dashFilterAll: 'पूरी',
   dashFilterPending: 'जाँच में',
   dashFilterInProgress: 'चालू काम',
@@ -745,7 +814,7 @@ const baseMal = {
 }
 
 const baseBho = {
-  ...baseHi,
+  ...baseEn,
   tellAttention: 'बताईं इंदौर में का परेशानी बा',
   issue: 'का समस्या बा?',
   issuePlaceholder: 'जैसे: सड़क पर गड्ढा, पानी के समस्या, बत्ती खराब',
@@ -759,7 +828,7 @@ const baseBho = {
 }
 
 const baseMai = {
-  ...baseHi,
+  ...baseEn,
   tellAttention: 'कहु की की समस्या अछि इंदौर में',
   issue: 'की समस्या अछि?',
   tellMore: 'विस्तार सँ बताउ',
@@ -770,7 +839,7 @@ const baseMai = {
 }
 
 const baseMwr = {
-  ...baseHi,
+  ...baseEn,
   tellAttention: 'बताओ इंदौर में कांई समस्या है',
   issue: 'कांई बात है?',
   tellMore: 'खोलने बताओ',
@@ -781,7 +850,7 @@ const baseMwr = {
 }
 
 const baseMr = {
-  ...baseHi,
+  ...baseEn,
   civicWorkspace: 'नागरी कार्यक्षेत्र',
   citizenDashboard: 'नागरिक डॅशबोर्ड',
   notifications: 'सूचना',
@@ -807,7 +876,7 @@ const baseMr = {
 }
 
 const baseGu = {
-  ...baseHi,
+  ...baseEn,
   civicWorkspace: 'નાગરિક કાર્યક્ષેત્ર',
   citizenDashboard: 'નાગરિક ડેશબોર્ડ',
   notifications: 'સૂચનાઓ',
@@ -833,7 +902,7 @@ const baseGu = {
 }
 
 const basePa = {
-  ...baseHi,
+  ...baseEn,
   civicWorkspace: 'ਨਾਗਰਿਕ ਕਾਰਜ ਖੇਤਰ',
   citizenDashboard: 'ਨਾਗਰਿਕ ਡੈਸ਼ਬੋਰਡ',
   notifications: 'ਸੂਚਨਾਵਾਂ',
@@ -855,7 +924,7 @@ const basePa = {
 }
 
 const baseBn = {
-  ...baseHi,
+  ...baseEn,
   civicWorkspace: 'নাগরিক কর্মক্ষেত্র',
   citizenDashboard: 'নাগরিক ড্যাশবোর্ড',
   notifications: 'বিজ্ঞপ্তি',
@@ -877,7 +946,7 @@ const baseBn = {
 }
 
 const baseTa = {
-  ...baseHi,
+  ...baseEn,
   civicWorkspace: 'குடிமை பணியிடம்',
   citizenDashboard: 'குடிமக்கள் டாஷ்போர்டு',
   notifications: 'அறிவிப்புகள்',
@@ -897,7 +966,7 @@ const baseTa = {
 }
 
 const baseTe = {
-  ...baseHi,
+  ...baseEn,
   civicWorkspace: 'పౌర కార్యస్థలం',
   citizenDashboard: 'పౌర డాష్‌బోర్డ్',
   notifications: 'నోటిఫికేషన్లు',
@@ -917,7 +986,7 @@ const baseTe = {
 }
 
 const baseKn = {
-  ...baseHi,
+  ...baseEn,
   civicWorkspace: 'ನಾಗರಿಕ ಕಾರ್ಯಕ್ಷೇತ್ರ',
   citizenDashboard: 'ನಾಗರಿಕ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್',
   notifications: 'ಅಧಿಸೂಚನೆಗಳು',
@@ -936,7 +1005,7 @@ const baseKn = {
 }
 
 const baseMl = {
-  ...baseHi,
+  ...baseEn,
   civicWorkspace: 'പൗര പ്രവർത്തന ഇടം',
   citizenDashboard: 'പൗര ഡാഷ്‌ബോർഡ്',
   notifications: 'അറിയിപ്പുകൾ',
@@ -955,7 +1024,7 @@ const baseMl = {
 }
 
 const baseUr = {
-  ...baseHi,
+  ...baseEn,
   civicWorkspace: 'شہری ورک اسپیس',
   citizenDashboard: 'سٹیزن ڈیش بورڈ',
   notifications: 'اطلاعات',
@@ -974,7 +1043,7 @@ const baseUr = {
 }
 
 const baseOr = {
-  ...baseHi,
+  ...baseEn,
   civicWorkspace: 'ନାଗରିକ କାର୍ଯ୍ୟକ୍ଷେତ୍ର',
   citizenDashboard: 'ନାଗରିକ ଡ୍ୟାସବୋର୍ଡ',
   notifications: 'ବିଜ୍ଞପ୍ତି',
@@ -993,7 +1062,7 @@ const baseOr = {
 }
 
 const baseAs = {
-  ...baseHi,
+  ...baseEn,
   civicWorkspace: 'নাগৰিক কৰ্মক্ষেত্ৰ',
   citizenDashboard: 'নাগৰিক ডেচবৰ্ড',
   notifications: 'জাননী',
@@ -1033,6 +1102,13 @@ export const translations = {
 
 const LanguageContext = createContext(null)
 
+const localizedNames = {
+  'avishi jain': {
+    hi: 'अविषी जैन',
+    mal: 'अविषी जैन',
+  },
+}
+
 export function LanguageProvider({ children }) {
   const [language, setLanguage] = useState(() => localStorage.getItem('voicebridge-language') || 'en')
   const selected = languages.find((item) => item.code === language) || languages[0]
@@ -1048,7 +1124,8 @@ export function LanguageProvider({ children }) {
     speechLanguage: selected.speech,
     languages,
     setLanguage,
-    t: (key) => translations[selected.code]?.[key] || translations.hi?.[key] || translations.en[key] || key,
+    localizeName: (name) => localizedNames[name?.trim().toLowerCase()]?.[selected.code] || name,
+    t: (key) => translations[selected.code]?.[key] || translations.en[key] || key,
   }), [selected.code, selected.label, selected.speech])
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>

@@ -20,6 +20,7 @@ import {
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext'
+import { DEMO_PROFILE } from '../services/demoAuth'
 
 const INDORE_WARDS = [
   'Ward 34 - Palasia & 56 Dukan',
@@ -34,27 +35,21 @@ const INDORE_WARDS = [
 
 const STORAGE_KEY = 'voicebridge-citizen-profile'
 
-export default function Profile() {
-  const { t } = useLanguage()
-
-  const [profile, setProfile] = useState(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY)
-      if (saved) return JSON.parse(saved)
-    } catch {}
-    return {
-      name: 'Hariom Tavar',
-      phone: '9753560707',
-      email: 'hariom.indore@voicebridge.in',
-      ward: 'Ward 34 - Palasia & 56 Dukan',
-      address: 'Near Old Palasia, Indore, MP 452001',
-      aadhaar: '5482 9104 3829',
-      isAadhaarVerified: true,
-      memberSince: 'January 2026',
-      civicScore: 185,
-      resolvedCount: 6,
+function getStoredProfile() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) {
+      const profile = JSON.parse(saved)
+      if (profile.name && !/^hariom\s+(tavar|tanwar)$/i.test(profile.name.trim())) return profile
     }
-  })
+  } catch {}
+  return DEMO_PROFILE
+}
+
+export default function Profile() {
+  const { t, localizeName } = useLanguage()
+  const [profile, setProfile] = useState(getStoredProfile)
+  const displayName = localizeName(profile.name)
 
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState(profile)
@@ -177,7 +172,7 @@ export default function Profile() {
         <div className="rounded-3xl border border-white/80 bg-white/80 p-6 sm:p-8 shadow-xl shadow-slate-900/5 backdrop-blur-xl">
           <div className="flex items-center gap-4">
             <div className="relative flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-tr from-[#5227eb] to-violet-400 text-2xl font-black text-white shadow-xl shadow-violet-300/50">
-              {profile.name.charAt(0)}
+              {displayName.charAt(0)}
               {profile.isAadhaarVerified && (
                 <span
                   title="UIDAI Verified"
@@ -189,7 +184,7 @@ export default function Profile() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-extrabold text-[#0f1115]">{profile.name}</h2>
+              <h2 className="text-2xl font-extrabold text-[#0f1115]">{displayName}</h2>
               <p className="text-sm font-semibold text-slate-500 flex items-center gap-1.5 mt-0.5">
                 <MapPin className="h-3.5 w-3.5 text-[#5227eb]" /> {profile.ward}
               </p>
@@ -322,7 +317,7 @@ export default function Profile() {
                   <span className="text-[8px] uppercase font-bold mt-1">Photo</span>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm font-black text-slate-900">{profile.name}</p>
+                  <p className="text-sm font-black text-slate-900">{displayName}</p>
                   <p className="text-[11px] font-bold text-slate-600">
                     Gender / लिंग: <span className="font-normal text-slate-800">Male / पुरूष</span>
                   </p>

@@ -11,8 +11,13 @@ function AiAssistant() {
   const [isListening, setIsListening] = useState(false)
   const [messages, setMessages] = useState([])
   const recognitionRef = useRef(null)
+  const messagesEndRef = useRef(null)
 
   useEffect(() => () => recognitionRef.current?.stop(), [])
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+  }, [messages, isLoading])
 
   useEffect(() => {
     setMessages((current) => current.length
@@ -58,10 +63,11 @@ function AiAssistant() {
           <div className="flex items-center gap-3"><div className="rounded-xl bg-white/15 p-2"><Bot className="h-5 w-5" /></div><div><p className="font-extrabold">VoiceBridge AI</p><p className="text-xs text-violet-100">{languageName} {t('aiSupport')}</p></div></div>
           <button type="button" onClick={() => setOpen(false)} aria-label="Close AI assistant" className="rounded-full p-2 hover:bg-white/15"><X className="h-5 w-5" /></button>
         </div>
-        <div className="flex-1 space-y-3 overflow-y-auto bg-slate-50 p-4">
+        <div className="min-h-0 flex-1 space-y-3 overflow-y-auto bg-slate-50 p-4">
           <div className="flex flex-wrap gap-2"><button type="button" onClick={() => sendMessage('How do I submit a complaint?')} className="rounded-full border border-violet-200 bg-white px-3 py-2 text-xs font-bold text-violet-700">{t('aiSubmit')}</button><button type="button" onClick={() => sendMessage('Which department should handle a road problem?')} className="rounded-full border border-violet-200 bg-white px-3 py-2 text-xs font-bold text-violet-700">{t('aiDepartment')}</button></div>
-          {messages.map((message, index) => <div key={`${message.role}-${index}`} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}><div className={`max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-6 ${message.role === 'user' ? 'rounded-br-md bg-[#5227eb] text-white' : 'rounded-bl-md border border-slate-200 bg-white text-slate-700'}`}>{message.text}</div></div>)}
+          {messages.map((message, index) => <div key={`${message.role}-${index}`} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}><div className={`max-w-[88%] whitespace-pre-wrap break-words rounded-2xl px-4 py-3 text-sm leading-6 ${message.role === 'user' ? 'rounded-br-md bg-[#5227eb] text-white' : 'rounded-bl-md border border-slate-200 bg-white text-slate-700'}`}>{message.text}</div></div>)}
           {isLoading && <div className="flex items-center gap-2 text-sm text-slate-500"><Sparkles className="h-4 w-4 animate-pulse text-violet-600" />{t('aiThinking')}</div>}
+          <div ref={messagesEndRef} aria-hidden="true" />
         </div>
         <form onSubmit={(event) => { event.preventDefault(); sendMessage() }} className="flex items-center gap-2 border-t border-slate-200 bg-white p-3">
           <input value={input} onChange={(event) => setInput(event.target.value)} placeholder={t('aiPlaceholder')} aria-label={t('aiPlaceholder')} className="min-w-0 flex-1 rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none" />

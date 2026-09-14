@@ -75,13 +75,28 @@ const INITIAL_NOTIFICATIONS = [
 
 const STORAGE_KEY = 'voicebridge-notifications'
 
+const ICONS_BY_CATEGORY = {
+  grievance: FileText,
+  ward: Truck,
+  municipal: Megaphone,
+}
+
+function restoreNotifications(value) {
+  if (!Array.isArray(value)) return INITIAL_NOTIFICATIONS
+  return value.map((item) => ({
+    ...item,
+    icon: ICONS_BY_CATEGORY[item.category] || Bell,
+    color: item.color || 'bg-slate-50 text-slate-600 border-slate-200',
+  }))
+}
+
 export default function Notifications() {
   const { t } = useLanguage()
 
   const [notifications, setNotifications] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY)
-      if (saved) return JSON.parse(saved)
+      if (saved) return restoreNotifications(JSON.parse(saved))
     } catch {}
     return INITIAL_NOTIFICATIONS
   })
@@ -214,7 +229,7 @@ export default function Notifications() {
             </motion.div>
           ) : (
             filtered.map((item) => {
-              const Icon = item.icon || Bell
+              const Icon = typeof item.icon === 'function' ? item.icon : ICONS_BY_CATEGORY[item.category] || Bell
               return (
                 <motion.article
                   key={item.id}

@@ -32,7 +32,7 @@ export async function analyzeGrievance(text, imageBase64 = null, language = 'Eng
 
 export async function askAssistant(message, language = 'English', history = []) {
   const controller = new AbortController()
-  const timeout = window.setTimeout(() => controller.abort(), 45000)
+  const timeout = window.setTimeout(() => controller.abort(), 15000)
   let response
   try {
     response = await fetch(`${API_BASE_URL}/chat`, {

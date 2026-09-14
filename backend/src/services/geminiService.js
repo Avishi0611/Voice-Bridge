@@ -78,7 +78,10 @@ export async function answerAssistant({ message, language = 'English', history =
   const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { maxOutputTokens: 120, temperature: 0.2 },
+    }),
     signal: AbortSignal.timeout(45000),
   })
   if (!response.ok) {
