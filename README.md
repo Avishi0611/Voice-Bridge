@@ -131,7 +131,7 @@ VoiceBridge aims to connect citizens and government officials through technology
 We hope this idea can contribute to better infrastructure planning and more responsive public services.
 
 ## Live Demo
-Link - voice-bridge-one-inky.vercel.app
+Link - https://voice-bridge-one-inky.vercel.app/
 
 ## 👥 Team
 
